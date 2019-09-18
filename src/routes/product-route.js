@@ -10,7 +10,8 @@ router.get('/todos', controller.getTodosNomes);
 router.get('/getByNome/:nome', controller.getByNome);
 
 //aluno
-router.put('/:nome', controller.putInscreverse);
+router.get('/inscrever/:nome', controller.getInscreverse);
+router.get('/desInscrever/:nome', controller.getDestInscreverse);
 router.post('/time/:nome', controller.postTime);
 
 //professor

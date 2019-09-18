@@ -24,7 +24,6 @@ exports.getTodosNomes = (req, res, next) => {
 }
 
 exports.getByNome = (req, res, next) => {
-    console.log(req.params.nome)
     Product.find({
         nome: req.params.nome
     })
@@ -35,9 +34,21 @@ exports.getByNome = (req, res, next) => {
     });
 }
 
-exports.putInscreverse = (req, res, next) => {
+exports.getInscreverse = (req, res, next) => {
     const nome = req.params.nome;
     Product.findOneAndUpdate({nome:nome}, {$set:{inscrito: true}}, {new: true}, (err, doc) => {
+        if (err) {
+            
+            res.status(400).send({ message: 'fail', data: e});
+        }
+        
+        res.status(200).send({ message: 'success'});
+    })
+};
+
+exports.getDestInscreverse = (req, res, next) => {
+    const nome = req.params.nome;
+    Product.findOneAndUpdate({nome:nome}, {$set:{inscrito: false}}, {new: true}, (err, doc) => {
         if (err) {
             
             res.status(400).send({ message: 'fail', data: e});
