@@ -1,6 +1,15 @@
 const mongoose = require ('mongoose');
 const Schema = mongoose.Schema;
 
+const subSchema = new Schema({
+    nome: {
+      type: String,
+    },
+    curso: {
+      type: String,
+    }
+  });
+
 const schema = new Schema({
     nome: {
         type: String,
@@ -23,9 +32,9 @@ const schema = new Schema({
         required: true,
         trim: true
     },
-    time:[{
-        type: String
-    }],
+    time:[
+        subSchema
+    ],
     softwareFuncionando: {
         type: Number
     },
