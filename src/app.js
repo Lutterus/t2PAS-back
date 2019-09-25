@@ -9,10 +9,12 @@ const router = express.Router();
 mongoose.connect('mongodb+srv://joao:joao@cluster0-s6ffj.mongodb.net/alunos')
 
 //carregar modelos
-const Product = require('./models/product');
+const Aluno = require('./models/Aluno');
+const Time = require('./models/Time');
 
-//Carrega as Rotas
+//Carrega a rota de teste
 const indexRoute = require('./routes/index-route');
+//Carrega as Rotas
 const productRoute = require('./routes/product-route');
 
 app.use(bodyParser.json());

@@ -1,15 +1,6 @@
 const mongoose = require ('mongoose');
 const Schema = mongoose.Schema;
 
-const subSchema = new Schema({
-    nome: {
-      type: String,
-    },
-    curso: {
-      type: String,
-    }
-  });
-
 const schema = new Schema({
     nome: {
         type: String,
@@ -32,25 +23,12 @@ const schema = new Schema({
         required: true,
         trim: true
     },
-    time:[
-        subSchema
-    ],
-    softwareFuncionando: {
-        type: Number
+    estaEmTime: {
+        type: Boolean,
+        required: true,
+        trim: true
     },
-    processo: {
-        type: Number
-    },
-    pitch: {
-        type: Number
-    },
-    inovacao: {
-        type: Number
-    },
-    formacaoDoTime:{
-        type: Number
-    }
 
 });
 
-module.exports = mongoose.model('Product', schema);
+module.exports = mongoose.model('Aluno', schema);
