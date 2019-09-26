@@ -175,20 +175,22 @@ exports.getTimeInscrito = (req, res, next) => {
 };
 
 exports.postAvaliacao = (req, res, next) => {
-    const nome = req.params.nome;
-    Product.findOneAndUpdate({ nome: nome }, {
-        $set: {
-            softwareFuncionando: req.body.softwareFuncionando,
+    TeamProduct.findOneAndUpdate({
+        time: { $elemMatch: { nome: req.params.nome } }
+    },
+        { $set: { 
+            softwareFuncionando: req.body.softwareFuncionando, 
             processo: req.body.processo,
             pitch: req.body.pitch,
             inovacao: req.body.inovacao,
             formacaoDoTime: req.body.formacaoDoTime
-        }
-    }, { new: true }, (err, doc) => {
-        if (err) {
-            res.status(400).send({ message: 'fail', data: err });
-        }
-        res.status(200).send({ message: 'success' });
-    })
+         }},
+        { upsert: true },
+        (err, doc) => {
+            if (err) {
+                res.status(400).send({ message: 'fail', data: err });
+            }
+            res.status(200).send({ data: 'success' })
+        })
 };
 
